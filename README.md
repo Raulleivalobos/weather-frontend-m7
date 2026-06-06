@@ -1,44 +1,29 @@
-# weather-fronted-m7
+# ClimaCL - Módulo 7 (Usuarios, Login y Estado Global) 🌤️
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplicación web de pronóstico meteorológico para 10 ciudades de Chile. En esta versión, se ha implementado un sistema completo de autenticación de usuarios y protección de rutas utilizando Firebase y Pinia, cumpliendo con los requerimientos avanzados de estado global.
 
-## Recommended IDE Setup
+🔗 **Enlace al repositorio:** [https://github.com/Raulleivalobos/weather-frontend-m7](https://github.com/Raulleivalobos/weather-frontend-m7)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 Flujo de Autenticación y Características
 
-## Recommended Browser Setup
+- **Registro e Inicio de Sesión:** Integración con **Firebase Authentication** para la gestión segura de cuentas mediante correo electrónico y contraseña.
+- **Estado Global:** Sustitución del antiguo Vuex por **Pinia** para manejar el estado de la sesión, lo que permite que el usuario siga logueado incluso si recarga la página.
+- **Preferencias Personalizadas:** Módulo de Pinia dedicado a gestionar las "Ciudades Favoritas" del usuario en la vista principal, permitiendo filtrar la interfaz según sus preferencias.
+- **Peticiones HTTP:** Consumo de la API de Open-Meteo mediante **Axios**.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## 🛡️ Rutas Protegidas (Vue Router)
 
-## Customize configuration
+Se implementó un "Navigation Guard" (`beforeEach`) para garantizar la seguridad de la aplicación:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- `/login` y `/registro`: Rutas públicas para invitados.
+- `/` (Home) y `/detalle/:id`: **Rutas privadas**. Exigen que el usuario tenga una sesión activa. Si un usuario no logueado intenta acceder a ellas, es redirigido automáticamente a la pantalla de login.
 
-## Project Setup
+## ⚙️ Instrucciones de Ejecución
 
-```sh
-pnpm install
-```
+1. Clonar el repositorio:
 
-### Compile and Hot-Reload for Development
+   ```bash
+   git clone [https://github.com/Raulleivalobos/weather-frontend-m7.git)
 
-```sh
-pnpm dev
-```
-
-### Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+   creado por Raúl Leiva - ClimaCL
+   ```
