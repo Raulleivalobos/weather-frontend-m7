@@ -44,7 +44,7 @@ const manejarLogin = async () => {
               <label class="form-label text-custom-muted">Correo Electrónico</label>
               <input
                 type="email"
-                class="form-control custom-input-bg text-dark border-secondary"
+                class="form-control custom-input"
                 v-model="email"
                 required
                 placeholder="ejemplo@correo.com"
@@ -54,7 +54,7 @@ const manejarLogin = async () => {
               <label class="form-label text-custom-muted">Contraseña</label>
               <input
                 type="password"
-                class="form-control custom-input-bg text-dark border-secondary"
+                class="form-control custom-input"
                 v-model="password"
                 required
                 placeholder="********"
@@ -79,19 +79,22 @@ const manejarLogin = async () => {
 </template>
 
 <style scoped>
-label.text-custom-muted,
-p.text-custom-muted {
-  color: #9ca3af;
+/* Estilos claros y celestes para los inputs */
+input.custom-input {
+  background-color: #f0f9ff !important; /* Celeste muy claro */
+  border: 1px solid #bae6fd !important; /* Borde celeste intermedio */
+  color: #334155 !important; /* Texto oscuro */
 }
 
-input.form-control.custom-input-bg {
-  background-color: #151b24;
+/* Efecto al hacer clic en el input */
+input.custom-input:focus {
+  background-color: #ffffff !important; /* Se vuelve blanco al escribir */
+  border-color: #7dd3fc !important;
+  box-shadow: 0 0 0 0.25rem rgba(125, 211, 252, 0.25) !important;
 }
 
-input.form-control.custom-input-bg:focus {
-  background-color: #151b24;
-  color: white;
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+/* Ajuste del color del placeholder (texto de ayuda) */
+input.custom-input::placeholder {
+  color: #94a3b8 !important;
 }
 </style>

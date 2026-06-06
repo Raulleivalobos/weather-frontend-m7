@@ -1,12 +1,13 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from './stores/auth'
-
+import { useFavoritosStore } from './stores/favoritos'
 const router = useRouter()
 const authStore = useAuthStore()
-
+const favoritosStore = useFavoritosStore()
 const manejarLogout = async () => {
   await authStore.logout()
+  favoritosStore.limpiarFavoritos()
   router.push('/login')
 }
 </script>
