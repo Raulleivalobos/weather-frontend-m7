@@ -162,19 +162,21 @@ const verDetalle = (id) => {
 <template>
   <div>
     <div class="text-center mb-5 mt-4">
-      <h1 class="text-primary fw-bold mb-3" style="font-size: 2.5rem">Pronóstico Nacional</h1>
-      <p class="text-custom-muted fs-5">Selecciona una ciudad o agrégala a tus favoritas.</p>
+      <h1 class="text-primary fw-bold mb-3" style="font-size: 2.5rem; color: #005aa3 !important">
+        Pronóstico Nacional
+      </h1>
+      <p class="text-secondary fs-5">Selecciona una ciudad o agrégala a tus favoritas.</p>
     </div>
 
     <div class="row justify-content-center mb-5" v-if="!cargando && !mensajeError">
       <div class="col-md-6 col-lg-5 mb-3 mb-md-0">
         <div class="input-group shadow-sm">
-          <span class="input-group-text custom-input-bg custom-border text-custom-muted">
+          <span class="input-group-text bg-white border-end-0 text-primary">
             <i class="fa-solid fa-magnifying-glass"></i>
           </span>
           <input
             type="text"
-            class="form-control custom-input-bg custom-border text-white"
+            class="form-control border-start-0 custom-search"
             placeholder="Buscar ciudad..."
             v-model="busqueda"
           />
@@ -185,13 +187,13 @@ const verDetalle = (id) => {
       >
         <div class="form-check form-switch fs-5">
           <input
-            class="form-check-input"
+            class="form-check-input shadow-sm"
             type="checkbox"
             role="switch"
             id="switchFavoritos"
             v-model="mostrarSoloFavoritos"
           />
-          <label class="form-check-label text-white ms-2" for="switchFavoritos">
+          <label class="form-check-label text-dark fw-medium ms-2" for="switchFavoritos">
             <i class="fa-solid fa-heart text-danger me-1"></i> Mis Favoritos
           </label>
         </div>
@@ -204,25 +206,25 @@ const verDetalle = (id) => {
         role="status"
         style="width: 3rem; height: 3rem"
       ></div>
-      <h3 class="text-white">Conectando vía Axios...</h3>
+      <h3 class="text-secondary">Conectando vía Axios...</h3>
     </div>
 
     <div v-else-if="mensajeError" class="text-center py-5">
       <i class="fa-solid fa-triangle-exclamation text-danger display-1 mb-3"></i>
-      <h3 class="text-white mb-2">Error de Conexión</h3>
+      <h3 class="text-dark mb-2">Error de Conexión</h3>
       <p class="text-muted">{{ mensajeError }}</p>
       <button @click="cargarClima" class="btn btn-outline-primary mt-3">Reintentar</button>
     </div>
 
     <div v-else class="row g-4 mb-5">
-      <div v-if="ciudadesFiltradas.length === 0" class="col-12 text-center text-custom-muted py-5">
+      <div v-if="ciudadesFiltradas.length === 0" class="col-12 text-center text-muted py-5">
         <i class="fa-solid fa-cloud-sun-rain display-1 mb-3"></i>
         <p class="fs-4">No se encontraron ciudades que coincidan.</p>
       </div>
 
       <div v-for="lugar in ciudadesFiltradas" :key="lugar.id" class="col-md-6 col-lg-4 col-xl-3">
         <article
-          class="card custom-card h-100 shadow-lg position-relative"
+          class="card custom-card h-100 shadow-sm position-relative"
           @click="verDetalle(lugar.id)"
         >
           <button
@@ -235,17 +237,17 @@ const verDetalle = (id) => {
                   ? 'fa-solid text-danger'
                   : 'fa-regular text-white'
               "
-              class="fa-heart fs-3"
+              class="fa-heart fs-3 shadow-sm"
             ></i>
           </button>
 
           <img :src="lugar.imagen" :alt="lugar.nombre" class="card-img-top custom-card-img" />
 
           <div class="card-body text-center p-4">
-            <i :class="`fa-solid ${lugar.iconoActual} display-4 mb-3 text-warning`"></i>
-            <h2 class="h4 fw-bold text-white mb-2">{{ lugar.nombre }}</h2>
-            <p class="display-6 fw-bold text-primary mb-2">{{ lugar.tempActual }}°C</p>
-            <p class="text-custom-muted fs-5 mb-0">{{ lugar.estadoActual }}</p>
+            <i :class="`fa-solid ${lugar.iconoActual} display-4 mb-3 text-primary`"></i>
+            <h2 class="h4 fw-bold text-dark mb-2">{{ lugar.nombre }}</h2>
+            <p class="display-6 fw-bold text-info mb-2">{{ lugar.tempActual }}°C</p>
+            <p class="text-secondary fs-5 fw-medium mb-0">{{ lugar.estadoActual }}</p>
           </div>
         </article>
       </div>
@@ -254,38 +256,11 @@ const verDetalle = (id) => {
 </template>
 
 <style scoped>
-/* Tipografía y textos secundarios */
-span.text-custom-muted,
-p.text-custom-muted,
-div.text-custom-muted {
-  color: #9ca3af;
-}
-
-/* Bordes personalizados ganando especificidad */
-span.input-group-text.custom-border,
-input.form-control.custom-border {
-  border-color: #2d3748;
-}
-
-/* Fondos oscuros para inputs */
-span.input-group-text.custom-input-bg,
-input.form-control.custom-input-bg {
-  background-color: #151b24;
-}
-
-/* Estado focus del buscador */
-input.form-control.custom-input-bg:focus {
-  background-color: #1b222d;
-  color: white;
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-/* Estilos de la Tarjeta */
+/* Estilos claros para las Tarjetas */
 article.card.custom-card {
-  background-color: #1b222d;
-  border: 1px solid #2d3748;
-  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
   cursor: pointer;
   transition:
     transform 0.2s ease,
@@ -294,34 +269,35 @@ article.card.custom-card {
 
 article.card.custom-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  border-color: #cbd5e1;
 }
 
 img.custom-card-img {
   height: 180px;
   object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
-/* Estilo para el botón del corazón flotante */
+/* Buscador limpio */
+input.custom-search:focus {
+  box-shadow: none;
+  border-color: #dee2e6;
+}
+
 button.btn-favorito {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   padding: 0.5rem 0.6rem;
   border: none;
   transition: all 0.2s;
   z-index: 10;
+  backdrop-filter: blur(2px);
 }
 
 button.btn-favorito:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   transform: scale(1.1);
-}
-
-/* Ajustes para el Switch de Bootstrap en modo oscuro */
-input.form-check-input:checked {
-  background-color: #dc3545;
-  border-color: #dc3545;
 }
 </style>

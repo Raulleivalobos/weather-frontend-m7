@@ -142,7 +142,7 @@ const volver = () => {
   <div>
     <div class="text-center mb-5 mt-4">
       <h1 class="text-primary fw-bold mb-3" style="font-size: 2.5rem">Pronóstico Extendido</h1>
-      <p class="text-custom-muted fs-5">Detalle meteorológico semanal.</p>
+      <p class="text-secondary fs-5">Detalle meteorológico semanal.</p>
     </div>
 
     <button @click="volver" class="btn btn-outline-primary mb-4" style="border-radius: 6px">
@@ -151,7 +151,7 @@ const volver = () => {
 
     <div v-if="cargando" class="text-center py-5">
       <div class="spinner-border text-primary" role="status"></div>
-      <p class="text-white mt-3">Cargando pronóstico...</p>
+      <p class="text-secondary mt-3">Cargando pronóstico...</p>
     </div>
 
     <div v-else-if="mensajeError" class="alert alert-danger text-center">
@@ -170,9 +170,9 @@ const volver = () => {
 
         <div class="row mb-5 align-items-center">
           <div class="col-lg-5 text-center text-lg-start mb-4 mb-lg-0">
-            <h2 class="display-4 text-white fw-bold mb-2">{{ lugar.nombre }}</h2>
+            <h2 class="display-4 text-dark fw-bold mb-2">{{ lugar.nombre }}</h2>
             <p
-              class="fs-4 text-custom-muted mb-0 d-flex align-items-center justify-content-center justify-content-lg-start"
+              class="fs-4 text-secondary mb-0 d-flex align-items-center justify-content-center justify-content-lg-start fw-medium"
             >
               <i :class="`fa-solid ${lugar.iconoActual} me-2 text-warning`"></i>
               {{ lugar.estadoActual }} actual
@@ -182,27 +182,27 @@ const volver = () => {
           <div class="col-lg-7">
             <div class="row g-3 text-center">
               <div class="col-4">
-                <div class="stat-box">
+                <div class="stat-box shadow-sm">
                   <h3 class="stat-label mb-2">Mín.</h3>
                   <p class="stat-value text-info mb-0">{{ stats.minSemana }}°C</p>
                 </div>
               </div>
               <div class="col-4">
-                <div class="stat-box">
+                <div class="stat-box shadow-sm">
                   <h3 class="stat-label mb-2">Prom.</h3>
                   <p class="stat-value text-success mb-0">{{ stats.promSemana }}°C</p>
                 </div>
               </div>
               <div class="col-4">
-                <div class="stat-box">
+                <div class="stat-box shadow-sm">
                   <h3 class="stat-label mb-2">Máx.</h3>
                   <p class="stat-value text-warning mb-0">{{ stats.maxSemana }}°C</p>
                 </div>
               </div>
 
               <div class="col-12">
-                <div class="stat-box text-start">
-                  <h3 class="stat-label mb-3">
+                <div class="stat-box text-start shadow-sm">
+                  <h3 class="stat-label mb-3 text-primary fw-bold">
                     <i class="fa-solid fa-chart-pie me-2"></i>Días por clima
                   </h3>
                   <div class="d-flex flex-wrap gap-2">
@@ -218,11 +218,11 @@ const volver = () => {
               </div>
 
               <div class="col-12">
-                <div class="stat-box text-start">
-                  <h3 class="stat-label mb-2">
+                <div class="stat-box text-start shadow-sm">
+                  <h3 class="stat-label mb-2 text-primary fw-bold">
                     <i class="fa-solid fa-chart-line me-2"></i>Resumen estadístico
                   </h3>
-                  <p class="text-white mb-0" style="font-size: 1.05rem; line-height: 1.5">
+                  <p class="text-dark mb-0 fw-medium" style="font-size: 1.05rem; line-height: 1.5">
                     {{ stats.resumen }}
                   </p>
                 </div>
@@ -231,22 +231,29 @@ const volver = () => {
           </div>
         </div>
 
-        <h3 class="h4 text-white mb-4 border-bottom custom-border pb-2">Pronóstico Extendido</h3>
-        <div class="rounded-3 overflow-hidden custom-border stat-box-bg">
+        <!-- AQUÍ ESTÁ LA PARTE CORREGIDA CON LOS ANCHOS FIJOS -->
+        <h3 class="h4 text-primary fw-bold mb-4 border-bottom custom-border pb-2">
+          Pronóstico Extendido
+        </h3>
+        <div class="rounded-3 overflow-hidden custom-border stat-box-bg shadow-sm">
           <div
             v-for="(dia, index) in lugar.pronosticoSemanal"
             :key="index"
             class="d-flex justify-content-between align-items-center p-3 border-bottom custom-border"
           >
-            <span :class="`fw-bold w-25 ${index === 0 ? 'text-primary' : 'text-white'}`">
+            <span :class="`fw-bold w-25 ${index === 0 ? 'text-primary fs-5' : 'text-dark'}`">
               {{ index === 0 ? 'Hoy' : dia.dia }}
             </span>
-            <span class="text-custom-muted w-50 text-center">{{ dia.estado }}</span>
-            <span class="w-25 text-end d-flex align-items-center justify-content-end">
-              <i :class="`fa-solid ${dia.icono} me-3 fs-5`"></i>
-              <span class="text-info me-2 fs-5">{{ dia.min }}°</span>
-              <span class="text-warning fw-bold fs-5">{{ dia.max }}°</span>
-            </span>
+
+            <span class="text-secondary fw-medium w-50 text-center">{{ dia.estado }}</span>
+
+            <div class="w-25 d-flex align-items-center justify-content-end">
+              <span class="weather-icon-box me-1">
+                <i :class="`fa-solid ${dia.icono} fs-5`"></i>
+              </span>
+              <span class="temp-box text-info fw-bold fs-5">{{ dia.min }}°</span>
+              <span class="temp-box text-warning fw-bold fs-5">{{ dia.max }}°</span>
+            </div>
           </div>
         </div>
       </div>
@@ -255,17 +262,17 @@ const volver = () => {
 </template>
 
 <style scoped>
-/* Contenedores Principales */
+/* Contenedor Principal Blanco */
 div.detail-card {
-  background-color: #1b222d;
-  border: 1px solid #2d3748;
-  border-radius: 12px;
+  background-color: #ffffff;
+  border-radius: 16px;
 }
 
+/* Cajas de estadísticas en Celeste muy suave */
 div.stat-box {
-  background-color: #151b24;
-  border: 1px solid #374151;
-  border-radius: 8px;
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
   padding: 1.25rem;
   height: 100%;
   display: flex;
@@ -274,39 +281,35 @@ div.stat-box {
 }
 
 div.stat-box-bg {
-  background-color: #151b24;
+  background-color: #f0f9ff;
 }
 
-/* Bordes y Textos con alta especificidad */
+/* Bordes celestes */
 .border-bottom.custom-border,
 div.custom-border {
-  border-color: #374151;
+  border-color: #bae6fd;
 }
 
-p.text-custom-muted,
-span.text-custom-muted {
-  color: #9ca3af;
-}
-
+/* Textos secundarios */
 h3.stat-label {
-  color: #9ca3af;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-p.stat-value {
-  font-size: 1.75rem;
+  color: #64748b;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
-/* Etiquetas de conteo */
+p.stat-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+}
+
+/* Etiquetas de conteo en azul clima */
 span.custom-badge {
-  background-color: #1f2937;
-  border: 1px solid #374151;
-  color: #f3f4f6;
+  background-color: #005aa3;
+  color: #ffffff;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 
 /* Alertas de color para avisos meteorológicos */
@@ -325,5 +328,14 @@ div.custom-alert-primary {
 div.custom-alert-success {
   background-color: #d1fae5;
   color: #064e3b;
+}
+/* Alineación perfecta de la columna derecha */
+span.weather-icon-box {
+  width: 35px; /* Fija el espacio del ícono */
+  text-align: center;
+}
+span.temp-box {
+  width: 45px; /* Fija el espacio de los números */
+  text-align: right;
 }
 </style>

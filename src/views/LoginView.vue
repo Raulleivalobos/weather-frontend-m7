@@ -30,10 +30,10 @@ const manejarLogin = async () => {
 <template>
   <div class="row justify-content-center align-items-center min-vh-100">
     <div class="col-12 col-md-8 col-lg-5">
-      <div class="card shadow-lg border-0" style="background-color: #1b222d; border-radius: 12px">
+      <div class="card shadow-lg border-0" style="border-radius: 16px">
         <div class="card-body p-5 text-center">
           <i class="fa-solid fa-cloud-sun text-warning display-4 mb-3"></i>
-          <h2 class="text-white fw-bold mb-4">Iniciar Sesión</h2>
+          <h2 class="text-dark fw-bold mb-4">Iniciar Sesión</h2>
 
           <div v-if="errorMensaje" class="alert alert-danger" role="alert">
             <i class="fa-solid fa-triangle-exclamation me-2"></i>{{ errorMensaje }}
@@ -44,7 +44,7 @@ const manejarLogin = async () => {
               <label class="form-label text-custom-muted">Correo Electrónico</label>
               <input
                 type="email"
-                class="form-control custom-input-bg text-white border-secondary"
+                class="form-control custom-input-bg text-dark border-secondary"
                 v-model="email"
                 required
                 placeholder="ejemplo@correo.com"
@@ -54,7 +54,7 @@ const manejarLogin = async () => {
               <label class="form-label text-custom-muted">Contraseña</label>
               <input
                 type="password"
-                class="form-control custom-input-bg text-white border-secondary"
+                class="form-control custom-input-bg text-dark border-secondary"
                 v-model="password"
                 required
                 placeholder="********"

@@ -37,7 +37,7 @@ const manejarRegistro = async () => {
 <template>
   <div class="row justify-content-center align-items-center min-vh-100">
     <div class="col-12 col-md-8 col-lg-5">
-      <div class="card shadow-lg border-0" style="background-color: #1b222d; border-radius: 12px">
+      <div class="card shadow-lg border-0" style="border-radius: 16px">
         <div class="card-body p-5 text-center">
           <i class="fa-solid fa-user-plus text-info display-4 mb-3"></i>
           <h2 class="text-white fw-bold mb-4">Crear Cuenta</h2>
@@ -51,7 +51,7 @@ const manejarRegistro = async () => {
               <label class="form-label text-custom-muted">Correo Electrónico</label>
               <input
                 type="email"
-                class="form-control custom-input-bg text-white border-secondary"
+                class="form-control custom-input-bg text-dark border-secondary"
                 v-model="email"
                 required
                 placeholder="ejemplo@correo.com"
@@ -61,7 +61,7 @@ const manejarRegistro = async () => {
               <label class="form-label text-custom-muted">Contraseña (Mín. 6 caracteres)</label>
               <input
                 type="password"
-                class="form-control custom-input-bg text-white border-secondary"
+                class="form-control custom-input-bg text-dark border-secondary"
                 v-model="password"
                 required
                 placeholder="********"
@@ -69,7 +69,7 @@ const manejarRegistro = async () => {
             </div>
             <button
               type="submit"
-              class="btn btn-info w-100 mb-3 text-white fw-bold"
+              class="btn btn-info w-100 mb-3 text-dark fw-bold"
               :disabled="procesando"
             >
               <span v-if="procesando" class="spinner-border spinner-border-sm me-2"></span>
